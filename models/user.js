@@ -1,6 +1,25 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const Bill = new Schema({
+  slot: Number,
+  vName: String,
+  VNumber: String,
+  status: {
+    type: String,
+    enum: ["Ongoing", "Completed"],
+    default: "Ongoing",
+  },
+  start: {
+    type: Date,
+    default: Date.now,
+  },
+  end: {
+    type: Date,
+  },
+  pay: Number,
+});
+
 // Create Schema
 const UserSchema = new Schema({
   name: {
@@ -24,6 +43,8 @@ const UserSchema = new Schema({
     enum: ["Pending", "Active"],
     default: "Pending",
   },
+  Account: Number,
+  History: [Bill],
   confirmationCode: {
     type: String,
     unique: true,
