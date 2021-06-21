@@ -98,7 +98,7 @@ router.get("/endbooking", async (req, res) => {
       return res.status(400).json({ error: "Verify your account first" });
     }
     const billIndex = user.History.findIndex((item) => {
-      item._id === req.body.bill.id;
+      item._id === req.body.billId;
     });
     user.History[billIndex].status = "Completed";
     await user.save();
