@@ -65,7 +65,9 @@ router
         vNumber: req.body.vNumber,
         slotNumber: slotNumber,
       };
+      console.log(user)
       user.history.push(booking);
+
       await user.save();
       res.status(200).send({ bill: user.history[-1] });
       await slot.save();
