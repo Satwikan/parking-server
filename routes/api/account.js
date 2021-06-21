@@ -8,14 +8,14 @@ router.post("/recharge", async (req, res) => {
   try {
     const user = await User.findById(req.body.id);
     if (!user) {
-      return res.status(400).json({ amount: "User does not exist" });
+      return res.status(400).json({ error: "User does not exist" });
     } else if (user && user.status === "Pending") {
-      return res.status(400).json({ amount: "Verify your account first" });
+      return res.status(400).json({ error: "Verify your account first" });
     }
     user.Balance = parseInt(user.Balance) + parseInt(req.body.amount);
     console.log("user", user);
     await user.save();
-    return res.status(200).json({ message: "recharge success" });
+    return res.status(200).json({ Balance: user.Balance });
   } catch (e) {
     console.log("error /recharge", e);
   }
@@ -25,20 +25,20 @@ router.post("/book", async (req, res) => {
   try {
     const user = await User.findById(req.body.id);
     if (!user) {
-      return res.status(400).json({ vName: "User does not exist" });
+      return res.status(400).json({ error: "User does not exist" });
     } else if (user && user.status === "Pending") {
-      return res.status(400).json({ vName: "Verify your account first" });
+      return res.status(400).json({ error: "Verify your account first" });
     }
     const slot = await Slot.findOne({ name: "Parking" });
     if (!slot)
       return res
         .status(500)
-        .json({ vName: "There is some Server Problem, Please wait" });
+        .json({ error: "There is some Server Problem, Please wait" });
 
     if (slot.occupied >= 60) {
       return res
         .status(400)
-        .send({ vName: "All Slots are booked, Please wait" });
+        .json({ error: "All Slots are booked, Please wait" });
     }
     let slotNumber = "";
     slot.occupied += 1;
