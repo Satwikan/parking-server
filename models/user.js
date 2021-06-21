@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const Bill = new Schema({
   slotNumber: String,
   vName: String,
-  VNumber: String,
+  vNumber: String,
   status: {
     type: String,
     enum: ["Ongoing", "Completed"],
