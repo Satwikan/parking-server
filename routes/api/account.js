@@ -65,12 +65,11 @@ router
         vNumber: req.body.vNumber,
         slotNumber: slotNumber,
       };
-      console.log(user)
-      user.history.push(booking);
-
+      console.log(user);
+      user.History.push(booking);
       await user.save();
-      res.status(200).send({ bill: user.history[-1] });
       await slot.save();
+      return res.status(200).send({ bill: user.history[-1] });
     } catch (e) {
       console.log("error /book", e);
     }
@@ -92,7 +91,7 @@ router
       } else if (user && user.status === "Pending") {
         return res.status(400).json({ amount: "Verify your account first" });
       }
-      res.send({ history: user.history });
+      return res.status(200).send({ history: user.history });
     } catch (e) {
       console.log("error /history", e);
     }
@@ -114,7 +113,7 @@ router
       } else if (user && user.status === "Pending") {
         return res.status(400).json({ amount: "Verify your account first" });
       }
-      res.json({ balance: user.balance });
+      return res.status(200).json({ balance: user.balance });
     } catch (e) {
       console.log("error /balance", e);
     }
