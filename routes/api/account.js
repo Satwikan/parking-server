@@ -13,6 +13,7 @@ router
   })
   .post("/recharge", async (req, res) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "*");
       const user = await User.findById(req.body.id);
       if (!user) {
         return res.status(400).json({ amount: "User does not exist" });
@@ -35,6 +36,7 @@ router
   })
   .post("/book", async (req, res) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "*");
       const user = await User.findById(req.body.id);
       if (!user) {
         return res.status(400).json({ amount: "User does not exist" });
@@ -81,6 +83,7 @@ router
   })
   .get("/history", async (req, res) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "*");
       const user = await User.findById(req.body.id);
       if (!user) {
         return res.status(400).json({ amount: "User does not exist" });
@@ -102,6 +105,7 @@ router
   })
   .get("/balance", async (req, res) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "*");
       const user = await User.findById(req.body.id);
       if (!user) {
         return res.status(400).json({ amount: "User does not exist" });
@@ -123,6 +127,7 @@ router
   })
   .get("/endbooking", async (req, res) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "*");
       const user = await User.findById(req.body.id);
       if (!user) {
         return res.status(400).json({ amount: "User does not exist" });
@@ -144,8 +149,8 @@ router
   })
   .get("/vacancy", async (req, res) => {
     try {
+      res.setHeader("Access-Control-Allow-Origin", "*");
       const slot = await Slot.findOne({ name: "Parking" });
-
       if (!slot)
         return res
           .status(500)
