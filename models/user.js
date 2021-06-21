@@ -43,7 +43,7 @@ const UserSchema = new Schema({
     enum: ["Pending", "Active"],
     default: "Pending",
   },
-  Account: Number,
+  Balance: Number,
   History: [Bill],
   confirmationCode: {
     type: String,

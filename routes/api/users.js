@@ -42,7 +42,8 @@ router.post("/register", (req, res) => {
             .save()
             .then((user) => {
               res.send({
-                message: "you registered successfully! Please check your email",
+                email:
+                  "you registered successfully! Please check your mail-box",
               });
               nodemailer.sendConfirmationEmail(
                 user.username,
