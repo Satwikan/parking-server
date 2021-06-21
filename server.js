@@ -6,7 +6,9 @@ const FRONT_URL = require("./frontUrl");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const account = require("./routes/api/account");
+
 // middleware
+app.use(cors());
 app.use(
   express.urlencoded({
     extended: false,
@@ -15,11 +17,10 @@ app.use(
 app.use(express.json());
 
 // CORS
-// app.use(cors());
 
-app.options('/api', function (req, res) {
+app.options("/", function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader("Access-Control-Allow-Methods", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
   res.end();
 });
