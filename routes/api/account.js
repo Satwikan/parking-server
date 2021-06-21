@@ -97,9 +97,11 @@ router.get("/endbooking", async (req, res) => {
     } else if (user && user.status === "Pending") {
       return res.status(400).json({ error: "Verify your account first" });
     }
+    console.log("line 100")
     const billIndex = user.History.findIndex((item) => {
       item._id === req.body.billId;
     });
+    console.log("line 103")
     user.History[billIndex].status = "Completed";
     await user.save();
     return res.status(200).json({ Bill: user.History[billIndex] });
