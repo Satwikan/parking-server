@@ -20,7 +20,7 @@ router
       } else if (user && user.status === "Pending") {
         return res.status(400).json({ amount: "Verify your account first" });
       }
-      user.Balance = req.body.amount;
+      user.Balance += req.body.amount;
       console.log("user", user);
       await user.save();
       return res.status(200).json({ message: "recharge success" });
@@ -69,7 +69,7 @@ router
       user.History.push(booking);
       await user.save();
       await slot.save();
-      return res.status(200).send({ bill: user.history[-1] });
+      return res.status(200).send({ bill: user.History[-1] });
     } catch (e) {
       console.log("error /book", e);
     }
