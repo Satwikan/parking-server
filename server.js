@@ -17,8 +17,8 @@ app.use(
 app.use(express.json());
 
 // CORS
-
-app.options("/", function (req, res) {
+app.options("*", cors());
+app.options("*", function (req, res) {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "*");
   res.setHeader("Access-Control-Allow-Headers", "*");
