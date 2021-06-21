@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
-const FRONT_URL = require("./frontUrl");
 const passport = require("passport");
 const users = require("./routes/api/users");
 const account = require("./routes/api/account");
