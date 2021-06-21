@@ -79,6 +79,17 @@ router.get("/history", (req, res) => {
   });
 });
 
+router.get("/balance", (req, res) => {
+  User.findById(req.body.id).then((user) => {
+    if (!user) {
+      return res.status(400).json({ amount: "User does not exist" });
+    } else if (user && user.status === "Pending") {
+      return res.status(400).json({ amount: "Verify your account first" });
+    }
+    res.send({ balance: user.balance });
+  });
+});
+
 router.get("/endbooking", (req, res) => {
   User.findById(req.body.id).then((user) => {
     if (!user) {
@@ -90,7 +101,7 @@ router.get("/endbooking", (req, res) => {
   });
 });
 
-router.get("vacancy", (req, res) => {
+router.get("/vacancy", (req, res) => {
   Slot.findOne({ name: "Parking" }).then(
     (slot) => {
       if (!slot)
