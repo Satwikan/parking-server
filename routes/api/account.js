@@ -20,8 +20,10 @@ router
       } else if (user && user.status === "Pending") {
         return res.status(400).json({ amount: "Verify your account first" });
       }
-      user.balance += req.body.amount;
+      user.Balance = req.body.amount;
+      console.log("user", user);
       await user.save();
+      return res.status(200).json({ message: "recharge success" });
     } catch (e) {
       console.log("error /recharge", e);
     }
@@ -39,15 +41,13 @@ router
       res.setHeader("Access-Control-Allow-Origin", "*");
       const user = await User.findById(req.body.id);
       if (!user) {
-        return res.status(400).json({ amount: "User does not exist" });
+        return res.status(400).json({ vName: "User does not exist" });
       } else if (user && user.status === "Pending") {
-        return res.status(400).json({ amount: "Verify your account first" });
+        return res.status(400).json({ vName: "Verify your account first" });
       }
       const slot = await Slot.findOne({ name: "Parking" });
-      if (!slot)
-        return res
-          .status(500)
-          .send({ message: "There is some Server Problem, Please wait" });
+      if (!slot) return res.status(500);
+      json({ vName: "There is some Server Problem, Please wait" });
 
       if (slot.occupied >= 60) {
         return res
@@ -87,11 +87,11 @@ router
       res.setHeader("Access-Control-Allow-Origin", "*");
       const user = await User.findById(req.body.id);
       if (!user) {
-        return res.status(400).json({ amount: "User does not exist" });
+        return res.status(400).json({ History: "User does not exist" });
       } else if (user && user.status === "Pending") {
-        return res.status(400).json({ amount: "Verify your account first" });
+        return res.status(400).json({ History: "Verify your account first" });
       }
-      return res.status(200).send({ history: user.history });
+      return res.status(200).send({ History: user.History });
     } catch (e) {
       console.log("error /history", e);
     }
