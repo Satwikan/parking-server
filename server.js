@@ -4,7 +4,7 @@ const app = express();
 const cors = require("cors");
 const passport = require("passport");
 const users = require("./routes/api/users");
-
+const account = require("./routes/api/account");
 // middleware
 app.use(
   express.urlencoded({
@@ -31,6 +31,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 // Routes
 app.use("/api/users", users);
+app.use("/api/account", account);
 
 // process.env.port is Heroku's port
 const port = process.env.PORT || 5000;

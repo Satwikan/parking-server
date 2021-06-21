@@ -41,7 +41,7 @@ router.post("/register", (req, res) => {
           newUser
             .save()
             .then((user) => {
-              res.send({
+              res.json({
                 email:
                   "you registered successfully! Please check your mail-box",
               });

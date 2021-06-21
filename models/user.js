@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Bill = new Schema({
-  slot: Number,
+  slotNumber: String,
   vName: String,
   VNumber: String,
   status: {
@@ -43,7 +43,10 @@ const UserSchema = new Schema({
     enum: ["Pending", "Active"],
     default: "Pending",
   },
-  Balance: Number,
+  Balance: {
+    type: Number,
+    default: 0,
+  },
   History: [Bill],
   confirmationCode: {
     type: String,

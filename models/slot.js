@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const SlotSchema = new Schema({
   name: String,
-  Occupied: Number,
+  occupied: Number,
 });
 
 module.exports = Slot = mongoose.model("slot", SlotSchema);
