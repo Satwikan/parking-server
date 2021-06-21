@@ -20,7 +20,7 @@ router
       } else if (user && user.status === "Pending") {
         return res.status(400).json({ amount: "Verify your account first" });
       }
-      user.Balance += req.body.amount;
+      user.Balance = parseInt(user.Balance) + parseInt(req.body.amount);
       console.log("user", user);
       await user.save();
       return res.status(200).json({ message: "recharge success" });
@@ -46,8 +46,10 @@ router
         return res.status(400).json({ vName: "Verify your account first" });
       }
       const slot = await Slot.findOne({ name: "Parking" });
-      if (!slot) return res.status(500);
-      json({ vName: "There is some Server Problem, Please wait" });
+      if (!slot)
+        return res
+          .status(500)
+          .json({ vName: "There is some Server Problem, Please wait" });
 
       if (slot.occupied >= 60) {
         return res
@@ -69,7 +71,7 @@ router
       user.History.push(booking);
       await user.save();
       await slot.save();
-      return res.status(200).send({ bill: user.History[-1] });
+      return res.status(200).json({ bill: user.History[-1] });
     } catch (e) {
       console.log("error /book", e);
     }
