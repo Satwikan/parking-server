@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 const config = require("../keys");
-
+const FRONT_URL = require("../frontUrl");
 const user = config.user;
 const pass = config.pass;
 
@@ -22,7 +22,7 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
       html: `<h3>Email Confirmation</h3>
           <h4>Hi 👋</h4>
           <p>Thanks for choosing us. <br/> Please confirm your email by clicking on the following link 🙌</p>
-          <a href=http://localhost:3000/confirm/${confirmationCode}> Click here</a>
+          <a href=${FRONT_URL}confirm/${confirmationCode}> Click here</a>
           </div>`,
     })
     .catch((err) => console.log(err));
