@@ -86,7 +86,7 @@ router.get("/balance", (req, res) => {
     } else if (user && user.status === "Pending") {
       return res.status(400).json({ amount: "Verify your account first" });
     }
-    res.send({ balance: user.balance });
+    res.json({ balance: user.balance });
   });
 });
 
@@ -107,13 +107,13 @@ router.get("/vacancy", (req, res) => {
       if (!slot)
         return res
           .status(500)
-          .send({ message: "There is some Server Problem, Please wait" });
+          .json({ message: "There is some Server Problem, Please wait" });
 
       if (slot.occupied >= 60)
         return res
           .status(400)
-          .send({ message: "All Slots are booked, Please wait" });
-      return res.status(200).send({ message: "Slots are available book Now!" });
+          .json({ message: "All Slots are booked, Please wait" });
+      return res.status(200).json({ message: "Slots are available book Now!" });
     },
     (err) => console.log(err)
   );
