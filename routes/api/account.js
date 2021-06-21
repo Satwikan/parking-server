@@ -105,6 +105,7 @@ router.get("/endbooking", async (req, res) => {
     return res.status(200).json({ Bill: user.History[billIndex] });
   } catch (e) {
     console.log("error /endbooking", e);
+    res.status(400).json({ error: e });
   }
 });
 
