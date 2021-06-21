@@ -109,11 +109,11 @@ router
       res.setHeader("Access-Control-Allow-Origin", "*");
       const user = await User.findById(req.body.id);
       if (!user) {
-        return res.status(400).json({ amount: "User does not exist" });
+        return res.status(400).json({ Balance: "User does not exist" });
       } else if (user && user.status === "Pending") {
-        return res.status(400).json({ amount: "Verify your account first" });
+        return res.status(400).json({ Balance: "Verify your account first" });
       }
-      return res.status(200).json({ balance: user.balance });
+      return res.status(200).json({ Balance: user.Balance });
     } catch (e) {
       console.log("error /balance", e);
     }
