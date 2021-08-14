@@ -2,4 +2,4 @@
 
 <p> Project is using Node, Nodemailer and Express </p>
 <hr/>
-<h2><a href="https://shortx.netlify.app/" target="blank">project url<a/></h2>
+<h2><a href="https://shortx.netlify.app/" target="_blank">project url<a/></h2>
